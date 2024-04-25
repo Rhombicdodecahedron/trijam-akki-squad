@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+
 public class GridManager : MonoBehaviour
 {
 
@@ -10,6 +12,12 @@ public class GridManager : MonoBehaviour
     public AudioClip[] bombSound;
     public AudioClip brushSound;
     private AudioSource audioSource;
+    // end screen
+    public TMP_Text endScreen;
+
+    public bool isGameOver = false;
+
+    public int score = 0;
 
 
     public GameObject[,] tiles;
@@ -26,9 +34,9 @@ public class GridManager : MonoBehaviour
         Hard
     }
 
-    public LevelParameters levelParameters = LevelParameters.Easy;
-    private int bones;
-    private int bombs;
+    public LevelParameters levelParameters = LevelParameters.Hard;
+    private int bones = 0;
+    private int bombs = 0;
 
 
 
@@ -44,19 +52,18 @@ public class GridManager : MonoBehaviour
         switch (levelParameters)
         {
             case LevelParameters.Easy:
-                bones = 15;
+                bones = 20;
                 bombs = 5;
                 break;
             case LevelParameters.Medium:
-                bones = 10;
+                bones = 20;
                 bombs = 10;
                 break;
             case LevelParameters.Hard:
-                bones = 10;
+                bones = 20;
                 bombs = 15;
                 break;
             default:
-
                 break;
         }
     }
@@ -66,14 +73,15 @@ public class GridManager : MonoBehaviour
     {
         print("GridManager Start");
         tiles = new GameObject[width, height];
-        GenerateGrid();
-
         initParameters();
+        GenerateGrid();
 
         // Center camera
         cam.transform.position = new Vector3(width / 2 - 0.5f, height / 2 - 0.5f, -10);
 
         audioSource = GetComponent<AudioSource>();
+
+        endScreen.enabled = false;
     }
 
     public void GenerateGrid()
@@ -104,7 +112,7 @@ public class GridManager : MonoBehaviour
 
     private void RandomlyPlaceBomb(int x, int y, GameObject newTile)
     {
-        if (Random.value < 0.3f)
+        if (Random.value < 0.3f && bombs > 0)
         {
             print("Bomb placed");
             // Instantiate the bomb prefab and set its sorting order higher than the tile
@@ -119,7 +127,7 @@ public class GridManager : MonoBehaviour
     private void RandomlyPlaceBone(int x, int y, GameObject newTile)
     {
         // Randomly determine whether to place a bone
-        if (Random.value < 0.3f)
+        if (Random.value < 0.3f && bones > 0)
         {
             print("Bone placed");
             // Instantiate the bone prefab and set its sorting order higher than the tile
@@ -133,6 +141,8 @@ public class GridManager : MonoBehaviour
 
     public void DigTile(int x, int y)
     {
+
+        if (isGameOver) return;
 
         // Play dig sound
         audioSource.clip = digSound[Random.Range(0, digSound.Length)];
@@ -169,6 +179,9 @@ public class GridManager : MonoBehaviour
             audioSource.clip = brushSound;
             audioSource.Play();
 
+            // Increase score
+            score++;
+
         }
         else if (newBomb != null)
         {
@@ -190,6 +203,10 @@ public class GridManager : MonoBehaviour
             // Play bomb sound
             audioSource.clip = bombSound[Random.Range(0, bombSound.Length)];
             audioSource.Play();
+
+            // End game
+            endScreen.enabled = true;
+            isGameOver = true;
         }
 
 
