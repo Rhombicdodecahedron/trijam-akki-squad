@@ -53,7 +53,7 @@ public class GridManager : MonoBehaviour
         {
             case LevelParameters.Easy:
                 bones = 20;
-                bombs = 5;
+                bombs = 10;
                 break;
             case LevelParameters.Medium:
                 bones = 20;
@@ -64,6 +64,8 @@ public class GridManager : MonoBehaviour
                 bombs = 15;
                 break;
             default:
+                bones = 20;
+                bombs = 10;
                 break;
         }
     }
@@ -112,7 +114,7 @@ public class GridManager : MonoBehaviour
 
     private void RandomlyPlaceBomb(int x, int y, GameObject newTile)
     {
-        if (Random.value < 0.3f && bombs > 0)
+        if (Random.value < 0.2f)
         {
             print("Bomb placed");
             // Instantiate the bomb prefab and set its sorting order higher than the tile
@@ -127,7 +129,7 @@ public class GridManager : MonoBehaviour
     private void RandomlyPlaceBone(int x, int y, GameObject newTile)
     {
         // Randomly determine whether to place a bone
-        if (Random.value < 0.3f && bones > 0)
+        if (Random.value < 0.5f)
         {
             print("Bone placed");
             // Instantiate the bone prefab and set its sorting order higher than the tile
