@@ -104,11 +104,11 @@ public class GridManager : MonoBehaviour
 
     private void RandomlyPlaceBomb(int x, int y, GameObject newTile)
     {
-        if (Random.value < 0.3f && bombs > 0)
+        if (Random.value < 0.3f)
         {
             print("Bomb placed");
             // Instantiate the bomb prefab and set its sorting order higher than the tile
-            GameObject bombPrefab = tilePrefabs[3];
+            GameObject bombPrefab = tilePrefabs[4];
             GameObject newBomb = Instantiate(bombPrefab, new Vector3(x, y), Quaternion.identity);
             newBomb.name = $"Bomb {x},{y}";
 
@@ -119,11 +119,11 @@ public class GridManager : MonoBehaviour
     private void RandomlyPlaceBone(int x, int y, GameObject newTile)
     {
         // Randomly determine whether to place a bone
-        if (Random.value < 0.3f && bones > 0)
+        if (Random.value < 0.3f)
         {
             print("Bone placed");
             // Instantiate the bone prefab and set its sorting order higher than the tile
-            GameObject bonePrefab = tilePrefabs[2];
+            GameObject bonePrefab = tilePrefabs[Random.Range(2, 4)];
             GameObject newBone = Instantiate(bonePrefab, new Vector3(x, y), Quaternion.identity);
             newBone.name = $"Bone {x},{y}";
 

@@ -396,11 +396,12 @@ MonoBehaviour:
   bombSound:
   - {fileID: 8300000, guid: 2a154ba0995d54b4b937bb65aaf955ba, type: 3}
   - {fileID: 8300000, guid: 38498e71191e24ee08e945fd8986add4, type: 3}
-  brushSound: {fileID: 8300000, guid: c653d9b25de00424ca45f8b93bbefcc5, type: 3}
+  brushSound: {fileID: 8300000, guid: 9412c0a458bf24a2b8409393c475c85e, type: 3}
   tilePrefabs:
   - {fileID: 7562708509439435317, guid: 24999d552f42a47ca8dd671f85a4c9b9, type: 3}
   - {fileID: 4617392101210979056, guid: df2b5fa62066c49d6a521ba0ee379797, type: 3}
   - {fileID: 7276261632263585541, guid: b186ffe494ac8479db5d2a725b7834fd, type: 3}
+  - {fileID: 8591003051710395109, guid: e32b740b328174ebfa2763367cd0430c, type: 3}
   - {fileID: 6188817302836154126, guid: 37d97c2f73bed4aea953e03ca113218f, type: 3}
   cam: {fileID: 1019028039}
   width: 10

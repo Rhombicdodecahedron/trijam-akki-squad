@@ -24,7 +24,6 @@ public class DirtTile : MonoBehaviour
             int x = Mathf.FloorToInt(mousePos.x + 0.5f);
             int y = Mathf.FloorToInt(mousePos.y + 0.5f);
             grid.DigTile(x, y);
-
         }
     }
 }
